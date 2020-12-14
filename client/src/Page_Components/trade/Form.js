@@ -12,7 +12,6 @@ const Form = (props) => {
   const [selectedHolding, setSelectedHolding] = useContext(SearchHoldingContext);
   const searchForHolding = useContext(SearchHoldingContext)
 
-
   useEffect(() => {
     if (symbol === '') {
       setCompanyName(null);
