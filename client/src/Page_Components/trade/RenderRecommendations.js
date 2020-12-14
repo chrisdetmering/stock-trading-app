@@ -3,12 +3,12 @@ import { HoldingContext } from '../../HoldingContext'
 
 
 
-function RenderRecommendations(props) {
+function RenderRecommendations({ recommendedHolding, handleTrade }) {
   const [shares, setShares] = useState(0);
   const [holdings, setHoldings] = useContext(HoldingContext);
 
   const compareSelectedHoldingToExisting = () => {
-    const holdingExist = holdings.find(holding => holding.symbol == props.recommendedHolding.symbol);
+    const holdingExist = holdings.find(holding => holding.symbol == recommendedHolding.symbol);
     if (holdingExist) {
       setShares(holdingExist.shares);
     } else {
@@ -18,16 +18,16 @@ function RenderRecommendations(props) {
 
   useEffect(() => {
     compareSelectedHoldingToExisting();
-  }, [props.recommendedHolding]);
+  }, [recommendedHolding]);
 
-  const { companyName, latestPrice, changePercent, change, symbol } = props.recommendedHolding;
+  const { companyName, latestPrice, changePercent, change, symbol } = recommendedHolding;
 
   return (
     <div className="recommended-holding">
       <div className="selected-holding card mt-3">
         <div className="card-head">
           <h2> {companyName}: {symbol}</h2>
-          <button className="btn btn-danger" onClick={() => props.handleTrade(symbol)}>Trade</button>
+          <button className="btn btn-danger" onClick={() => handleTrade(symbol)}>Trade</button>
         </div>
         <hr />
         <div className="card-body">
