@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import axios from 'axios'
 // import { FiThumbsUp, FiThumbsDown } from 'react-icons/fi'
+import { SearchHoldingContext } from '../../SearchHoldingContext'
 
 const Form = (props) => {
   const [symbol, setSymbol] = useState('');
@@ -8,15 +9,19 @@ const Form = (props) => {
   const [isCanSearch, setCanSearch] = useState(true);
   const timeoutRef = useRef(null);
 
+  const [selectedHolding, setSelectedHolding] = useContext(SearchHoldingContext);
+  const searchForHolding = useContext(SearchHoldingContext)
+
+
   useEffect(() => {
     if (symbol === '') {
       setCompanyName(null);
     }
-  }, [symbol])
+  }, [symbol]);
 
   function handleSubmit(e) {
     e.preventDefault()
-    props.searchForHolding(symbol)
+    searchForHolding();
   }
 
   const onSearchSymbol = (e) => {

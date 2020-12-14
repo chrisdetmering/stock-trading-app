@@ -9,7 +9,7 @@ import Report from './Page_Components/report/Report'
 import Confirm from './Page_Components/trade/Confirm'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { HoldingProvider } from './HoldingContext'
-import { TextProvider } from './SearchHoldingContext'
+import { SearchHoldingProvider } from './SearchHoldingContext'
 
 
 function App() {
@@ -19,12 +19,12 @@ function App() {
         <Navigation />
         <main id="main-container">
           <HoldingProvider>
-            <TextProvider>
+            <SearchHoldingProvider>
               <Route path="/" exact component={Home} />
               <Route path="/main" component={Trade} />
               <Route path="/report" component={Report} />
               <Route path="/confirm" component={Confirm} />
-            </TextProvider>
+            </SearchHoldingProvider>
           </HoldingProvider>
         </main>
         {/* <Footer /> */}

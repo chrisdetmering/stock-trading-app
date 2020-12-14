@@ -12,21 +12,20 @@ import Form from './Form'
 const Trade = () => {
   const [recommendedHoldings, setRecommendedHoldings] = useState([]);
   const [holdings, setHoldings] = useContext(HoldingContext);
-  const [selectedHolding, setSelectedHolding] = useState(null);
+  // const [selectedHolding, setSelectedHolding] = useState(null);
 
-  // const [text, setText] = useContext(textContext);
-  const text = useContext(SearchHoldingContext)
+  const [selectedHolding, setSelectedHolding] = useContext(SearchHoldingContext);
 
-  console.log(text);
+  const searchForHolding = useContext(SearchHoldingContext)
 
-  const searchForHolding = async (symbol) => {
-    try {
-      const response = await axios.get(`api/stocks/search/?symbol=${symbol}`);
-      setSelectedHolding(response.data);
-    } catch (err) {
-      console.error(err.message)
-    }
-  };
+  // const searchForHolding = async (symbol) => {
+  //   try {
+  //     const response = await axios.get(`api/stocks/search/?symbol=${symbol}`);
+  //     setSelectedHolding(response.data);
+  //   } catch (err) {
+  //     console.error(err.message)
+  //   }
+  // };
 
   const buyNewHolding = (shares) => {
     setHoldings(prevHoldings => {

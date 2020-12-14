@@ -1,15 +1,24 @@
 import React, { useState, createContext } from 'react';
+import axios from 'axios'
 
 export const SearchHoldingContext = createContext();
 
-export const TextProvider = (props) => {
-  // const [text, setText] = useState('hello there')
-  const text = 'hello there';
+export const SearchHoldingProvider = (props) => {
+  const [selectedHolding, setSelectedHolding] = useState(null);
 
+
+  const searchForHolding = async (symbol) => {
+    try {
+      const response = await axios.get(`api/stocks/search/?symbol=${symbol}`);
+      setSelectedHolding(response.data);
+    } catch (err) {
+      console.error(err.message)
+    }
+  };
 
   return (
     <SearchHoldingContext.Provider
-      value={text}>
+      value={searchForHolding, [selectedHolding, setSelectedHolding]}>
       {props.children}
     </SearchHoldingContext.Provider>
   )
