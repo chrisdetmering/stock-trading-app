@@ -1,17 +1,17 @@
 import React, { useState, createContext } from 'react';
 
-export const textContext = createContext();
+export const SearchHoldingContext = createContext();
 
-export const textProvider = (props) => {
+export const TextProvider = (props) => {
   // const [text, setText] = useState('hello there')
   const text = 'hello there';
 
 
   return (
-    <textContext.Provider
+    <SearchHoldingContext.Provider
       value={text}>
       {props.children}
-    </textContext.Provider>
+    </SearchHoldingContext.Provider>
   )
 }
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios'
 import './Trade.css'
 import { HoldingContext } from '../../HoldingContext'
-import { textContext } from '../../SearchHoldingContext'
+import { SearchHoldingContext } from '../../SearchHoldingContext'
 import { createHolding, getHoldings, updateHolding } from '../../dbFunctions.js'
 import Recommendations from './Recommendations'
 import SelectedHolding from './SelectedHolding'
@@ -15,7 +15,7 @@ const Trade = () => {
   const [selectedHolding, setSelectedHolding] = useState(null);
 
   // const [text, setText] = useContext(textContext);
-  const text = useContext(textContext)
+  const text = useContext(SearchHoldingContext)
 
   console.log(text);
 
