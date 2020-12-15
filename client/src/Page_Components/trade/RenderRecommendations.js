@@ -1,9 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { HoldingContext } from '../../HoldingContext'
 
+<<<<<<< HEAD
 
 
 function RenderRecommendations({ recommendedHolding, handleTrade }) {
+=======
+function RenderRecommendations(props) {
+>>>>>>> master
   const [shares, setShares] = useState(0);
   const [holdings, setHoldings] = useContext(HoldingContext);
 
@@ -11,8 +15,6 @@ function RenderRecommendations({ recommendedHolding, handleTrade }) {
     const holdingExist = holdings.find(holding => holding.symbol == recommendedHolding.symbol);
     if (holdingExist) {
       setShares(holdingExist.shares);
-    } else {
-      console.log('Recommended holding is not part of user holdings');
     }
   }
 

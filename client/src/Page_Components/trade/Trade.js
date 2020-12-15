@@ -8,12 +8,14 @@ import Recommendations from './Recommendations'
 import SelectedHolding from './SelectedHolding'
 import Header from './Header'
 import Form from './Form'
+import qa from 'qs';
 
-const Trade = () => {
+const Trade = (props) => {
   const [recommendedHoldings, setRecommendedHoldings] = useState([]);
   const [holdings, setHoldings] = useContext(HoldingContext);
   // const [selectedHolding, setSelectedHolding] = useState(null);
 
+<<<<<<< HEAD
   const [selectedHolding, setSelectedHolding] = useContext(SearchHoldingContext);
 
   const searchForHolding = useContext(SearchHoldingContext)
@@ -26,6 +28,30 @@ const Trade = () => {
   //     console.error(err.message)
   //   }
   // };
+=======
+  const searchForHolding = async (symbol) => {
+    try {
+      const response = await axios.get(`api/stocks/search/?symbol=${symbol}`);
+      setSelectedHolding(response.data);
+    } catch (err) {
+      console.error(err.message);
+    };
+  };
+>>>>>>> master
+
+  useEffect(() => {
+    const queryStrings = qa.parse(
+      props.location.search,
+      { ignoreQueryPrefix: true });
+    if (queryStrings.symbol) {
+      searchForHolding(queryStrings.symbol);
+    }
+  }, []);
+
+  const sellShares = (shares) => {
+    const holding = holdings.find(holding => holding.symbol == selectedHolding.symbol);
+    updateHolding(holding.holding_id, holding.shares - shares);
+  }
 
   const buyNewHolding = (shares) => {
     setHoldings(prevHoldings => {
@@ -77,6 +103,7 @@ const Trade = () => {
           <SelectedHolding
             selectedHolding={selectedHolding}
             buyNewHolding={buyNewHolding}
+            sellShares={sellShares}
           />
           : null}
         <Recommendations

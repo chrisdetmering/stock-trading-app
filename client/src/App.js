@@ -19,12 +19,19 @@ function App() {
         <Navigation />
         <main id="main-container">
           <HoldingProvider>
+<<<<<<< HEAD
             <SearchHoldingProvider>
               <Route path="/" exact component={Home} />
               <Route path="/main" component={Trade} />
               <Route path="/report" component={Report} />
               <Route path="/confirm" component={Confirm} />
             </SearchHoldingProvider>
+=======
+            <Route path="/" exact component={Home} />
+            <Route path="/main*" component={Trade} />
+            <Route path="/report" component={Report} />
+            <Route path="/confirm" component={Confirm} />
+>>>>>>> master
           </HoldingProvider>
         </main>
         {/* <Footer /> */}
